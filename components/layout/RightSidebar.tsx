@@ -2,7 +2,7 @@ import React from 'react';
 
 const RightSidebar: React.FC = () => {
   return (
-    <aside className="hidden xl:flex flex-col w-80 p-4 pl-8 sticky top-0 h-screen">
+    <aside className="w-96 p-4 pl-8 sticky top-0 h-screen">
       <div className="space-y-6">
         {/* Search Bar Placeholder */}
         <input 

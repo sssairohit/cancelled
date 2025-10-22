@@ -50,7 +50,7 @@ const App: React.FC = () => {
   return (
     <div className="bg-background min-h-screen font-sans text-text-primary">
        <div className="flex justify-center">
-          <div className="flex">
+          <div className="flex w-full max-w-[1350px]">
             <LeftSidebar />
             <main className="w-full max-w-[600px] border-x border-border">
                 <MainFeed 
@@ -59,7 +59,9 @@ const App: React.FC = () => {
                   onOpenDiscussion={openDiscussion}
                 />
             </main>
-            <RightSidebar />
+            <div className="hidden lg:flex flex-grow">
+              <RightSidebar />
+            </div>
           </div>
        </div>
 

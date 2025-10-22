@@ -15,7 +15,7 @@ const LeftSidebar: React.FC = () => {
   ];
 
   return (
-    <aside className="hidden lg:flex flex-col justify-between w-64 p-4 pr-8 sticky top-0 h-screen">
+    <aside className="hidden lg:flex flex-col justify-between w-72 p-4 pr-8 sticky top-0 h-screen">
         <div>
             <div className="mb-6">
                 <h1 className="text-xl font-bold text-primary tracking-tight">Cancelled</h1>
