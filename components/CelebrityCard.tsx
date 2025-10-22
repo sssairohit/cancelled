@@ -1,78 +1,94 @@
 import React from 'react';
 import type { Celebrity } from '../types';
-import { UpvoteIcon } from './icons/UpvoteIcon';
-import { DownvoteIcon } from './icons/DownvoteIcon';
 import { CommentIcon } from './icons/CommentIcon';
 import ReasonBubble from './ReasonBubble';
+import { LikeIcon } from './icons/LikeIcon';
+import { RepostIcon } from './icons/RepostIcon';
+import { ShareIcon } from './icons/ShareIcon';
 
 interface CelebrityCardProps {
   celebrity: Celebrity;
-  onVote: (id: string, voteType: 'upvote' | 'downvote') => void;
-  onOpenDiscussion: (celebrity: Celebrity) => void;
+  onLike: (id: string) => void;
+  onReply: (celebrity: Celebrity) => void;
 }
 
-const CelebrityCard: React.FC<CelebrityCardProps> = ({ celebrity, onVote, onOpenDiscussion }) => {
-  const totalVotes = celebrity.upvotes + celebrity.downvotes;
-  const upvotePercentage = totalVotes > 0 ? (celebrity.upvotes / totalVotes) * 100 : 50;
+const CelebrityCard: React.FC<CelebrityCardProps> = ({ celebrity, onLike, onReply }) => {
 
   return (
-    <div className="bg-surface border border-border overflow-hidden flex flex-col transition-colors hover:border-primary">
-      <div className="relative">
-        <img className="w-full h-64 object-cover" src={celebrity.image} alt={celebrity.name} />
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/60 to-transparent"></div>
-        <h2 className="absolute bottom-2 left-4 text-2xl font-bold text-white">{celebrity.name}</h2>
+    <article 
+      className="flex p-4 border-b border-border bg-surface hover:bg-surface-dark/50 transition-colors duration-200"
+      aria-labelledby={`celebrity-name-${celebrity.id}`}
+    >
+      <div className="flex-shrink-0 pt-1">
+        <img 
+            className="w-10 h-10 rounded-full object-cover" 
+            src={celebrity.avatar} 
+            alt={`${celebrity.name}'s avatar`} 
+        />
       </div>
 
-      <div className="p-4 flex-grow">
-        <p className="text-text-secondary text-sm mb-4">{celebrity.description}</p>
+      <div className="ml-4 flex-1">
+        <header>
+          <h2 id={`celebrity-name-${celebrity.id}`} className="font-bold text-text-primary">{celebrity.name}</h2>
+        </header>
         
-        <div className="h-2 w-full bg-danger overflow-hidden mb-2 border border-border">
-            <div 
-                className="h-full bg-success transition-all duration-500" 
-                style={{ width: `${upvotePercentage}%` }}
-            ></div>
-        </div>
+        <p className="text-text-primary text-sm mt-1">{celebrity.description}</p>
         
-        <div className="flex justify-between text-xs text-text-secondary mb-4">
-            <span className="font-semibold text-success-text">{celebrity.upvotes.toLocaleString()} Upvotes</span>
-            <span className="font-semibold text-danger-text">{celebrity.downvotes.toLocaleString()} Downvotes</span>
-        </div>
-
-        <div className="h-16 flex flex-wrap gap-2 items-start overflow-hidden">
+        {celebrity.postImage && (
+            <div className="mt-3 border border-border rounded-xl overflow-hidden">
+                <img 
+                    className="w-full h-auto max-h-[400px] object-cover" 
+                    src={celebrity.postImage} 
+                    alt={`Post from ${celebrity.name}`} 
+                />
+            </div>
+        )}
+        
+        <div className="mt-3 flex flex-wrap gap-2 items-start">
             {celebrity.reasons.map(reason => (
                 <ReasonBubble key={reason.id} reason={reason} />
             ))}
         </div>
-      </div>
+        
+        <footer className="mt-3">
+          <div className="flex justify-between items-center text-text-secondary max-w-xs">
+              <button
+                  onClick={(e) => { e.stopPropagation(); onReply(celebrity); }}
+                  className="flex items-center space-x-2 hover:text-primary transition-colors duration-200 group"
+                  aria-label={`Reply to ${celebrity.name}`}
+              >
+                  <CommentIcon className="w-5 h-5 group-hover:scale-110 transition-transform"/>
+                  <span className="text-sm">{celebrity.comments.length}</span>
+              </button>
+              
+              <button
+                  onClick={(e) => e.stopPropagation()}
+                  className="flex items-center space-x-2 hover:text-success transition-colors duration-200 group"
+                  aria-label={`Repost ${celebrity.name}`}
+              >
+                  <RepostIcon className="w-5 h-5 group-hover:scale-110 transition-transform"/>
+              </button>
 
-      <div className="p-4 bg-surface-dark mt-auto border-t border-border">
-        <div className="flex justify-around items-center">
-            <button
-                onClick={() => onVote(celebrity.id, 'upvote')}
-                className="flex items-center space-x-2 text-success hover:opacity-80 transition-opacity duration-200 group"
-                aria-label={`Upvote ${celebrity.name}`}
-            >
-                <UpvoteIcon className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                <span className="font-semibold">Upvote</span>
-            </button>
-            <button
-                onClick={() => onOpenDiscussion(celebrity)}
-                className="text-text-secondary hover:text-primary transition-colors duration-200 group"
-                aria-label={`Discuss ${celebrity.name}`}
-            >
-                 <CommentIcon className="w-4 h-4 group-hover:scale-110 transition-transform"/>
-            </button>
-            <button
-                onClick={() => onVote(celebrity.id, 'downvote')}
-                className="flex items-center space-x-2 text-danger hover:opacity-80 transition-opacity duration-200 group"
-                aria-label={`Downvote ${celebrity.name}`}
-            >
-                <span className="font-semibold">Downvote</span>
-                <DownvoteIcon className="w-4 h-4 group-hover:scale-110 transition-transform" />
-            </button>
-        </div>
+              <button
+                  onClick={(e) => { e.stopPropagation(); onLike(celebrity.id); }}
+                  className={`flex items-center space-x-2 transition-colors duration-200 group ${celebrity.liked ? 'text-danger' : 'hover:text-danger'}`}
+                  aria-label={`Like ${celebrity.name}`}
+              >
+                  <LikeIcon className={`w-5 h-5 group-hover:scale-110 transition-transform ${celebrity.liked ? 'fill-current' : 'fill-none'}`} />
+                  <span className="text-sm font-medium">{celebrity.likes.toLocaleString()}</span>
+              </button>
+
+              <button
+                  onClick={(e) => e.stopPropagation()}
+                  className="flex items-center space-x-2 hover:text-primary transition-colors duration-200 group"
+                  aria-label={`Share ${celebrity.name}`}
+              >
+                  <ShareIcon className="w-5 h-5 group-hover:scale-110 transition-transform"/>
+              </button>
+          </div>
+        </footer>
       </div>
-    </div>
+    </article>
   );
 };
 

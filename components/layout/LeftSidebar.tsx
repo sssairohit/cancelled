@@ -4,7 +4,12 @@ import { HomeIcon } from '../icons/HomeIcon';
 import { SearchIcon } from '../icons/SearchIcon';
 import { NotificationsIcon } from '../icons/NotificationsIcon';
 import { MessagesIcon } from '../icons/MessagesIcon';
-import { PostIcon } from '../icons/PostIcon';
+import { ProfileIcon } from '../icons/ProfileIcon';
+import { ListsIcon } from '../icons/ListsIcon';
+import { CommunitiesIcon } from '../icons/CommunitiesIcon';
+import { BookmarksIcon } from '../icons/BookmarksIcon';
+import { MoreIcon } from '../icons/MoreIcon';
+import { PencilIcon } from '../icons/PencilIcon';
 
 const LeftSidebar: React.FC = () => {
   const navItems = [
@@ -12,6 +17,11 @@ const LeftSidebar: React.FC = () => {
     { icon: <SearchIcon className="w-6 h-6" />, text: 'Search' },
     { icon: <NotificationsIcon className="w-6 h-6" />, text: 'Notifications' },
     { icon: <MessagesIcon className="w-6 h-6" />, text: 'Messages' },
+    { icon: <ProfileIcon className="w-6 h-6" />, text: 'Profile' },
+    { icon: <ListsIcon className="w-6 h-6" />, text: 'Lists' },
+    { icon: <CommunitiesIcon className="w-6 h-6" />, text: 'Communities' },
+    { icon: <BookmarksIcon className="w-6 h-6" />, text: 'Bookmarks' },
+    { icon: <MoreIcon className="w-6 h-6" />, text: 'Premium / Settings' },
   ];
 
   return (
@@ -31,8 +41,9 @@ const LeftSidebar: React.FC = () => {
                 ))}
             </nav>
 
-            <button className="mt-6 w-full bg-primary text-white font-bold py-3 px-4 text-base hover:opacity-90 transition-opacity">
-                Post
+            <button className="mt-6 w-full bg-primary text-white font-bold py-3 px-4 text-base hover:opacity-90 transition-opacity flex items-center justify-center space-x-2">
+                <PencilIcon className="w-5 h-5" />
+                <span>Post</span>
             </button>
         </div>
         

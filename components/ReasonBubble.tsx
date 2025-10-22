@@ -1,22 +1,17 @@
 import React from 'react';
 import type { Reason } from '../types';
-import { UpvoteIcon } from './icons/UpvoteIcon';
-import { DownvoteIcon } from './icons/DownvoteIcon';
+import { LikeIcon } from './icons/LikeIcon';
 
 interface ReasonBubbleProps {
   reason: Reason;
 }
 
 const ReasonBubble: React.FC<ReasonBubbleProps> = ({ reason }) => {
-  const isUpvote = reason.type === 'upvote';
-  
   return (
     <div
-      className={`flex items-center px-2.5 py-1 text-xs font-medium animate-fade-in-fast
-        ${isUpvote ? 'bg-success-bg text-success-text' : 'bg-danger-bg text-danger-text'}
-      `}
+      className={`flex items-center px-2.5 py-1 text-xs font-medium animate-fade-in-fast bg-success-bg text-success-text`}
     >
-      {isUpvote ? <UpvoteIcon className="w-3 h-3 mr-1" /> : <DownvoteIcon className="w-3 h-3 mr-1" />}
+      <LikeIcon className="w-3 h-3 mr-1.5 text-success" fill="currentColor" />
       <span>{reason.text}</span>
     </div>
   );

@@ -1,8 +1,9 @@
+import type { Celebrity as FeedCelebrity } from './types';
 
 export interface Reason {
   id: string;
   text: string;
-  type: 'upvote' | 'downvote';
+  type: 'like';
 }
 
 export interface Comment {
@@ -15,10 +16,19 @@ export interface Comment {
 export interface Celebrity {
   id: string;
   name: string;
-  image: string;
+  avatar: string;
+  postImage?: string; // Optional post image
   description: string;
-  upvotes: number;
-  downvotes: number;
+  likes: number;
+  liked?: boolean; // Used for client-side state tracking
   reasons: Reason[];
   comments: Comment[];
+}
+
+export interface BattlegroundCelebrity {
+  name: string;
+  avatar: string;
+  biography: string;
+  forVotes: number;
+  cancelVotes: number;
 }

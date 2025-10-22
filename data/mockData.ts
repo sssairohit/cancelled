@@ -4,10 +4,10 @@ export const initialCelebrities: Celebrity[] = [
   {
     id: '1',
     name: 'Elon Musk',
-    image: 'https://picsum.photos/300/400?random=1',
+    avatar: 'https://picsum.photos/200/200?random=1',
+    postImage: 'https://picsum.photos/600/400?random=11',
     description: 'Tech mogul known for rockets, electric cars, and controversial tweets.',
-    upvotes: 12500,
-    downvotes: 8300,
+    likes: 12500,
     reasons: [],
     comments: [
       { id: 'c1-1', author: 'Techie1', text: 'Love the new products! Pushing humanity forward.', timestamp: new Date(Date.now() - 1000 * 60 * 5).toISOString() },
@@ -18,10 +18,10 @@ export const initialCelebrities: Celebrity[] = [
   {
     id: '2',
     name: 'Taylor Swift',
-    image: 'https://picsum.photos/300/400?random=2',
+    avatar: 'https://picsum.photos/200/200?random=2',
+    postImage: 'https://picsum.photos/600/400?random=12',
     description: 'Chart-topping pop superstar whose every move is scrutinized by fans.',
-    upvotes: 250000,
-    downvotes: 15000,
+    likes: 250000,
     reasons: [],
     comments: [
       { id: 'c2-1', author: 'Swiftie4Life', text: 'Her last album was a masterpiece. A lyrical genius!', timestamp: new Date(Date.now() - 1000 * 60 * 2).toISOString() },
@@ -31,10 +31,9 @@ export const initialCelebrities: Celebrity[] = [
   {
     id: '3',
     name: 'MrBeast',
-    image: 'https://picsum.photos/300/400?random=3',
+    avatar: 'https://picsum.photos/200/200?random=3',
     description: 'YouTuber famous for elaborate stunts and large-scale philanthropy.',
-    upvotes: 550000,
-    downvotes: 5000,
+    likes: 550000,
     reasons: [],
     comments: [
       { id: 'c3-1', author: 'VideoWatcher', text: "He's changing the world with his videos. So wholesome.", timestamp: new Date(Date.now() - 1000 * 60 * 10).toISOString() },
