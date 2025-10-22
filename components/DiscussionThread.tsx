@@ -20,7 +20,7 @@ const DiscussionThread: React.FC<DiscussionThreadProps> = ({ celebrity, onClose 
         <header className="p-4 border-b border-border flex justify-between items-center">
           <h3 className="text-xl font-bold text-primary">Discussion: {celebrity.name}</h3>
           <button onClick={onClose} className="text-text-secondary hover:text-primary transition-colors">
-            <CloseIcon className="w-6 h-6" />
+            <CloseIcon className="w-5 h-5" />
           </button>
         </header>
         

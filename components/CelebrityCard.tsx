@@ -52,7 +52,7 @@ const CelebrityCard: React.FC<CelebrityCardProps> = ({ celebrity, onVote, onOpen
                 className="flex items-center space-x-2 text-success hover:opacity-80 transition-opacity duration-200 group"
                 aria-label={`Upvote ${celebrity.name}`}
             >
-                <UpvoteIcon className="w-8 h-8 group-hover:scale-110 transition-transform" />
+                <UpvoteIcon className="w-4 h-4 group-hover:scale-110 transition-transform" />
                 <span className="font-semibold">Upvote</span>
             </button>
             <button
@@ -60,7 +60,7 @@ const CelebrityCard: React.FC<CelebrityCardProps> = ({ celebrity, onVote, onOpen
                 className="text-text-secondary hover:text-primary transition-colors duration-200 group"
                 aria-label={`Discuss ${celebrity.name}`}
             >
-                 <CommentIcon className="w-7 h-7 group-hover:scale-110 transition-transform"/>
+                 <CommentIcon className="w-4 h-4 group-hover:scale-110 transition-transform"/>
             </button>
             <button
                 onClick={() => onVote(celebrity.id, 'downvote')}
@@ -68,7 +68,7 @@ const CelebrityCard: React.FC<CelebrityCardProps> = ({ celebrity, onVote, onOpen
                 aria-label={`Downvote ${celebrity.name}`}
             >
                 <span className="font-semibold">Downvote</span>
-                <DownvoteIcon className="w-8 h-8 group-hover:scale-110 transition-transform" />
+                <DownvoteIcon className="w-4 h-4 group-hover:scale-110 transition-transform" />
             </button>
         </div>
       </div>
