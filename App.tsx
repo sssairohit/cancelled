@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { geminiService } from './services/geminiService';
 import type { Celebrity, Reason } from './types';
-import Header from './components/Header';
-import CelebrityCard from './components/CelebrityCard';
 import DiscussionThread from './components/DiscussionThread';
 import { initialCelebrities } from './data/mockData';
+import LeftSidebar from './components/layout/LeftSidebar';
+import RightSidebar from './components/layout/RightSidebar';
+import MainFeed from './components/MainFeed';
+import BottomNav from './components/layout/BottomNav';
 
 const App: React.FC = () => {
   const [celebrities, setCelebrities] = useState<Celebrity[]>(initialCelebrities);
@@ -47,25 +49,25 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-background min-h-screen font-sans text-text-primary">
-      <Header />
-      <main className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {celebrities.map(celebrity => (
-            <CelebrityCard 
-              key={celebrity.id} 
-              celebrity={celebrity}
-              onVote={handleVote}
-              onOpenDiscussion={openDiscussion}
-            />
-          ))}
-        </div>
-      </main>
+       <div className="container mx-auto flex">
+          <LeftSidebar />
+          <main className="w-full lg:max-w-2xl border-x border-border">
+              <MainFeed 
+                celebrities={celebrities}
+                onVote={handleVote}
+                onOpenDiscussion={openDiscussion}
+              />
+          </main>
+          <RightSidebar />
+       </div>
+
       {selectedCelebrity && (
         <DiscussionThread 
           celebrity={selectedCelebrity} 
           onClose={closeDiscussion} 
         />
       )}
+      <BottomNav />
     </div>
   );
 };

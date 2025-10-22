@@ -1,15 +1,14 @@
 import React from 'react';
-import ThemeSwitcher from './ThemeSwitcher';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+    title: string;
+}
+
+const Header: React.FC<HeaderProps> = ({ title }) => {
   return (
-    <header className="bg-surface border-b border-border">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div>
-            <h1 className="text-3xl font-bold text-primary tracking-tight">Cancelled</h1>
-            <p className="text-text-secondary mt-1">The court of public opinion.</p>
-        </div>
-        <ThemeSwitcher />
+    <header className="sticky top-0 bg-surface/80 backdrop-blur-md border-b border-border z-10">
+      <div className="container mx-auto px-4 py-4">
+        <h1 className="text-xl font-bold text-text-primary tracking-tight">{title}</h1>
       </div>
     </header>
   );
