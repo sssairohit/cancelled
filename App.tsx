@@ -49,16 +49,18 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-background min-h-screen font-sans text-text-primary">
-       <div className="container mx-auto flex">
-          <LeftSidebar />
-          <main className="w-full lg:max-w-2xl border-x border-border">
-              <MainFeed 
-                celebrities={celebrities}
-                onVote={handleVote}
-                onOpenDiscussion={openDiscussion}
-              />
-          </main>
-          <RightSidebar />
+       <div className="flex justify-center">
+          <div className="flex">
+            <LeftSidebar />
+            <main className="w-full max-w-[600px] border-x border-border">
+                <MainFeed 
+                  celebrities={celebrities}
+                  onVote={handleVote}
+                  onOpenDiscussion={openDiscussion}
+                />
+            </main>
+            <RightSidebar />
+          </div>
        </div>
 
       {selectedCelebrity && (
