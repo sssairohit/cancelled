@@ -1,4 +1,4 @@
-# Color System Overview
+## Color System Overview
 
 Each theme includes:
 
