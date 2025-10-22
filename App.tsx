@@ -1,24 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { geminiService } from './services/geminiService';
 import type { Celebrity, Reason } from './types';
 import Header from './components/Header';
 import CelebrityCard from './components/CelebrityCard';
 import DiscussionThread from './components/DiscussionThread';
+import { initialCelebrities } from './data/mockData';
 
 const App: React.FC = () => {
-  const [celebrities, setCelebrities] = useState<Celebrity[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [celebrities, setCelebrities] = useState<Celebrity[]>(initialCelebrities);
   const [selectedCelebrity, setSelectedCelebrity] = useState<Celebrity | null>(null);
-
-  useEffect(() => {
-    const fetchCelebrities = async () => {
-      setLoading(true);
-      const initialCelebrities = await geminiService.generateInitialCelebrities();
-      setCelebrities(initialCelebrities);
-      setLoading(false);
-    };
-    fetchCelebrities();
-  }, []);
 
   const handleVote = async (id: string, voteType: 'upvote' | 'downvote') => {
     const celebrity = celebrities.find(c => c.id === id);
@@ -59,23 +49,16 @@ const App: React.FC = () => {
     <div className="bg-background min-h-screen font-sans text-text-primary">
       <Header />
       <main className="container mx-auto px-4 py-8">
-        {loading ? (
-          <div className="text-center">
-             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-             <p className="mt-4 text-lg">The jury is deliberating...</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {celebrities.map(celebrity => (
-              <CelebrityCard 
-                key={celebrity.id} 
-                celebrity={celebrity}
-                onVote={handleVote}
-                onOpenDiscussion={openDiscussion}
-              />
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {celebrities.map(celebrity => (
+            <CelebrityCard 
+              key={celebrity.id} 
+              celebrity={celebrity}
+              onVote={handleVote}
+              onOpenDiscussion={openDiscussion}
+            />
+          ))}
+        </div>
       </main>
       {selectedCelebrity && (
         <DiscussionThread 
