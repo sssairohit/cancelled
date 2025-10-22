@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cancelled</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Base styles */
+    html {
+        font-size: 14px;
+    }
+    body {
+        letter-spacing: -0.25px;
+        background-color: hsl(var(--background));
+        color: hsl(var(--text-primary));
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Light Theme (default) */
+    :root, :root[data-theme='light'] {
+        --background: 248 249 250;
+        --surface: 255 255 255;
+        --surface-dark: 248 249 250;
+        --border: 222 226 230;
+        --primary: 79 70 229;
+        --text-primary: 33 37 41;
+        --text-secondary: 108 117 125;
+        
+        --success: 25 135 84;
+        --success-text: 25 135 84;
+        --success-bg: 209 250 229;
+
+        --danger: 220 53 69;
+        --danger-text: 220 53 69;
+        --danger-bg: 253 237 237;
+    }
+
+    /* Midnight Dark Theme */
+    :root[data-theme='dark'] {
+        --background: 18 18 24;
+        --surface: 28 28 36;
+        --surface-dark: 18 18 24;
+        --border: 55 65 81;
+        --primary: 34 211 238;
+        --text-primary: 229 231 235;
+        --text-secondary: 156 163 175;
+
+        --success: 22 163 74;
+        --success-text: 74 222 128;
+        --success-bg: 22 44 42;
+        
+        --danger: 190 24 93;
+        --danger-text: 251 113 133;
+        --danger-bg: 54 22 33;
+    }
+
+    /* Monokai Theme */
+    :root[data-theme='monokai'] {
+        --background: 39 40 34;
+        --surface: 49 50 44;
+        --surface-dark: 39 40 34;
+        --border: 73 72 62;
+        --primary: 249 38 114; /* Pink */
+        --text-primary: 248 248 242;
+        --text-secondary: 166 166 166;
+
+        --success: 166 226 46; /* Green */
+        --success-text: 39 40 34;
+        --success-bg: 100 130 30;
+
+        --danger: 253 151 31; /* Orange */
+        --danger-text: 39 40 34;
+        --danger-bg: 130 90 20;
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            background: 'hsl(var(--background) / <alpha-value>)',
+            surface: 'hsl(var(--surface) / <alpha-value>)',
+            'surface-dark': 'hsl(var(--surface-dark) / <alpha-value>)',
+            primary: 'hsl(var(--primary) / <alpha-value>)',
+            border: 'hsl(var(--border) / <alpha-value>)',
+            
+            'text-primary': 'hsl(var(--text-primary) / <alpha-value>)',
+            'text-secondary': 'hsl(var(--text-secondary) / <alpha-value>)',
+
+            success: 'hsl(var(--success) / <alpha-value>)',
+            'success-text': 'hsl(var(--success-text) / <alpha-value>)',
+            'success-bg': 'hsl(var(--success-bg) / <alpha-value>)',
+            
+            danger: 'hsl(var(--danger) / <alpha-value>)',
+            'danger-text': 'hsl(var(--danger-text) / <alpha-value>)',
+            'danger-bg': 'hsl(var(--danger-bg) / <alpha-value>)',
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease-out',
+            'fade-in-fast': 'fadeIn 0.2s ease-out',
+            'slide-up': 'slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: 0 },
+              '100%': { opacity: 1 },
+            },
+            slideUp: {
+              '0%': { transform: 'translateY(20px)', opacity: 0 },
+              '100%': { transform: 'translateY(0)', opacity: 1 },
+            }
+          },
+          borderRadius: {
+            'none': '0',
+          }
+        },
+      },
+    }
+  </script>
+</head>
+<body class="bg-background">
+  <div id="root"></div>
+  <script type="importmap">
+    {
+      "imports": {
+        "react": "https://aistudiocdn.com/react@^19.2.0",
+        "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+        "react/": "https://aistudiocdn.com/react@^19.2.0/",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.26.0"
+      }
+    }
+  </script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

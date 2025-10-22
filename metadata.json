@@ -1,0 +1,5 @@
+{
+  "name": "Cancelled",
+  "description": "An app to upvote or downvote trending celebrities, see live vote counts, and join the discussion. See who's in the spotlight and who's getting 'cancelled'.",
+  "requestFramePermissions": []
+}
